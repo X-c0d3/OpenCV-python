@@ -1,17 +1,15 @@
-FROM ubuntu:18.04
+FROM python:3-slim
 LABEL maintainer="rockdevper@gmail.com"
 
-RUN apt-get update -y && apt-get install -y build-essential cmake \
-    libsm6 libxext6 libxrender-dev \
-    python3 python3-pip python3-dev python3-opencv
+RUN apt update -y && apt install -y libgl1-mesa-dev libgtk2.0-dev
 
 COPY ./requirements.txt /app/requirements.txt
 WORKDIR /app
-RUN pip3 install -r requirements.txt
 
-COPY . /app
+COPY . .
+RUN pip3 install opencv-python
+RUN pip3 install -r requirements.txt
 
 EXPOSE 5000
 
-ENTRYPOINT ["python3"]
-CMD ["main.py"]
+CMD [ "python3", "./main.py" ]

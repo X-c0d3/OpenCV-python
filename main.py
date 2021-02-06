@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+
+# Author : Watchara Pongsri
+# [github/X-c0d3] https://github.com/X-c0d3/
+# Web Site: https://wwww.rockdevper.com
+
 from cv2 import cv2
 import sys
 from configparser import ConfigParser
@@ -37,14 +42,15 @@ def gen(camera):
     global last_epoch
     while True:
         image, found_obj = camera.get_frame()
+        res, jpeg = cv2.imencode('.jpg', image)
         if found_obj and (time.time() - last_epoch) > SEND_NOTIFY_INTERVAL:
             last_epoch = time.time()
-            sendNotify("Detecting \n Found Object !! \n Please recheck your IP camera  \n Time:" +
-                       datetime.now().strftime("%H:%M:%S"), image)
             print("Send Line Notify!")
+            sendNotify("Detecting \n Found Object !! \n Please recheck your IP camera  \n Time:" +
+                       datetime.now().strftime("%H:%M:%S"), jpeg)
 
         yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n\r\n')
+               b'Content-Type: image/jpeg\r\n\r\n' + jpeg.tobytes() + b'\r\n\r\n')
 
 
 @ app.route('/video_feed')
