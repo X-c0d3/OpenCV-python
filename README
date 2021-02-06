@@ -6,7 +6,7 @@ pip3 install -r requirements.txt
 
 For Linux
 #############################
-apt install python3-opencv
+apt install python3-opencv libgl1-mesa-dev libgtk2.0-dev
 apt install libatlas-base-dev
 pip3 install -r requirements.txt
 
@@ -14,8 +14,8 @@ pip3 install -r requirements.txt
 For docker 
 #############################
 docker build -t opencv-demo:v1 .
-docker run -d -p 5000:5000 opencv-demo:v1
-go to http://localhost:5000
+docker run -d -p 3000:3000 opencv-demo:v1
+go to http://localhost:3000
 
 
 

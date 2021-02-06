@@ -10,6 +10,6 @@ COPY . .
 RUN pip3 install opencv-python
 RUN pip3 install -r requirements.txt
 
-EXPOSE 5000
+EXPOSE 3000
 
 CMD [ "python3", "./main.py" ]
