@@ -25,7 +25,7 @@ if __name__ == '__main__':
                        datetime.now().strftime("%H:%M:%S"), jpeg)
 
         if frame is not None:
-            cv2.imshow("Home Security IP Camera", frame)
+            cv2.imshow("Home Security - IP Camera", frame)
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break

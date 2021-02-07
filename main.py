@@ -46,7 +46,7 @@ def gen(camera):
         if found_obj and (time.time() - last_epoch) > SEND_NOTIFY_INTERVAL:
             last_epoch = time.time()
             print("Send Line Notify!")
-            sendNotify("Detecting \n Found Object !! \n Please recheck your IP camera  \n Time:" +
+            sendNotify("Detecting \n Found Object !! \n Please recheck your IP camera \n Time:" +
                        datetime.now().strftime("%H:%M:%S"), jpeg)
 
         yield (b'--frame\r\n'
