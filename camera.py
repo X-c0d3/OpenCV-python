@@ -49,7 +49,8 @@ class VideoCamera(object):
             self.thread.start()
         elif(configur.getint('appsettings', 'vdo_mode') == 2):
             # Read stream from vdo file
-            self.capture = cv2.VideoCapture('./vdo-test.mp4')
+            self.capture = cv2.VideoCapture(
+                configur.get('test-vdo', 'source_vdo_path'))
         else:
             # Build-in Webcam
             self.capture = cv2.VideoCapture(0)
