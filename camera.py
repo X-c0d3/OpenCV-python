@@ -15,6 +15,7 @@ from threading import Thread
 configur = ConfigParser()
 configur.read('config.ini')
 
+
 fullbody_recognition = cv2.CascadeClassifier(
     'models/fullbody_recognition_model.xml')
 
@@ -23,7 +24,7 @@ upperbody = cv2.CascadeClassifier(
 
 
 facial_recognition = cv2.CascadeClassifier(
-    'models/facial_recognition_model.xml')
+    'models/haarcascade_frontalface_default.xml')
 
 eye = cv2.CascadeClassifier(
     'models/haarcascade_eye.xml')
@@ -63,6 +64,8 @@ class VideoCamera(object):
 
         # must set FPS ..25 is max..if i try to set 26 or higher it runs slow. ...this runs 30 fps for me If you not set FPS...it runs slow too
         self.capture.set(cv2.CAP_PROP_FPS, 25)
+        self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, 690)
+        self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, 1280)
 
         self.status = False
         self.frame = None
@@ -84,6 +87,8 @@ class VideoCamera(object):
         if self.status:
             found_objects = False
             vdo = self.frame
+
+            # vdo = cv2.rotate(vdo, cv2.ROTATE_90_CLOCKWISE)
 
             width = int(vdo.shape[1] * scale_percent / 100)
             height = int(vdo.shape[0] * scale_percent / 100)
@@ -142,6 +147,7 @@ class VideoCamera(object):
                 roi_color = vdo[fy:fy+fh, fx:fx+fw]
                 # for eye detecting
                 eyes = eye.detectMultiScale(roi_gray)
+
                 for (ex, ey, ew, eh) in eyes:
                     cv2.rectangle(roi_color, (ex, ey),
                                   (ex+ew, ey+eh), (0, 255, 0), 2)
