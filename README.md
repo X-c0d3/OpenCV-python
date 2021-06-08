@@ -1,4 +1,4 @@
-![schedule](https://raw.githubusercontent.com/X-c0d3/OpenCV-python/blob/main/ScreenShot1.png)
+![schedule](https://github.com/X-c0d3/OpenCV-python/blob/main/ScreenShot1.png)
 
 macOS
 #############################
@@ -21,6 +21,6 @@ How to use
 
 - Change config.ini
 - Execute file
-  # python3 ./main.py
+   python3 ./main.py
   or
-  # python3 ./test.py
+   python3 ./test.py
